@@ -4,59 +4,49 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
-public class CustomListView {
+public class CustomListView  extends ArrayAdapter<Empl> {
+    private LayoutInflater mInflater;
+    private ArrayList<Empl> empls;
+    private int mViewResourceId;
 
-    private ArrayList<String> listData;
-    private LayoutInflater layoutInflater;
-    private Context context;
-
-    // Constructor
-    public CustomListView(Context context, ArrayList<String> listData) {
-        this.listData = listData;
-        layoutInflater = LayoutInflater.from(context);
-        this.context = context;
+    public CustomListView(Context context, int textViewResourceId, ArrayList<Empl> empls) {
+        super(context, textViewResourceId, empls);
+        this.empls = empls;
+        mInflater = (LayoutInflater) context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mViewResourceId = textViewResourceId;
     }
 
-    public int getCount() {
-        return listData.size();
-    }
-
-    public Object getItem(int position) {
-        return listData.get(position);
-    }
-
-    public long getItemId(int position) {
-        return position;
-    }
 
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
-        //      int type = getItemViewType(position);
+        convertView = mInflater.inflate(mViewResourceId, null);
 
-        if (convertView == null) {
+        Empl empl = empls.get(position);
 
-            convertView = layoutInflater.inflate(R.layout.listview_row, null);
-            holder = new ViewHolder();
+        if (empl != null) {
+            TextView Name = (TextView) convertView.findViewById(R.id.NameText);
+            TextView phone = (TextView) convertView.findViewById(R.id.phoneText);
+            TextView emile = (TextView) convertView.findViewById(R.id.emileText);
+            TextView Age = (TextView) convertView.findViewById(R.id.AgeText);
+            if (Name != null) {
+                Name.setText(empl.getName());
+            }
+            if (phone != null) {
+                phone.setText((empl.getPhone()));
+            }
 
-            holder.FirstText = (TextView) convertView.findViewById(R.id.FirstText);
-            holder.SecondText = (TextView) convertView.findViewById(R.id.SecondText);
-            convertView.setTag(holder);
-        } else {
-            holder = (ViewHolder) convertView.getTag();
+            if (emile != null) {
+                emile.setText((empl.getEmail()));
+            }
+            if (Age != null) {
+                Age.setText(empl.getName());
+            }
         }
 
-        holder.FirstText.setText("JOPH");
-        holder.SecondText.setText("44");
-
         return convertView;
-    }
-
-    static class ViewHolder {
-        TextView FirstText;
-        TextView SecondText;
     }
 }

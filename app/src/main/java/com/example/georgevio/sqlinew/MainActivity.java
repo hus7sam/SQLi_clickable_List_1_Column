@@ -24,6 +24,7 @@ int s;
     EditText editTextName;
     EditText editTextPhone;
     EditText editTextEmail;
+    EditText editTextAge;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -35,6 +36,7 @@ int s;
         editTextName = (EditText)findViewById(R.id.editName);
         editTextPhone = (EditText)findViewById(R.id.editPhone);
         editTextEmail = (EditText)findViewById(R.id.editEmail);
+        editTextAge = (EditText)findViewById(R.id.editTextAge);
 
         bttnadd = (Button) findViewById(R.id.bttnAdd);
         bttnshow1 = (Button) findViewById(R.id.bttnShow1);
@@ -49,11 +51,12 @@ int s;
                 String getName = editTextName.getText().toString();
                 String getPhone = editTextPhone.getText().toString();
                 String getEmail = editTextEmail.getText().toString();
+                String getAge = editTextAge.getText().toString();
 
-                if (mydb.insertContact(getName, getPhone, getEmail)) {
+                if (mydb.insertContact(getName, getPhone, getEmail,getAge)) {
                     Log.v("georgeLog", "Successfully inserted record to db");
                     Toast.makeText(getApplicationContext(),
-                            "Inserted:" + getName + ", " + getPhone + "," + getEmail, Toast.LENGTH_SHORT).show();
+                            "Inserted:" + getName + ", " + getPhone + "," + getEmail + "," + getAge, Toast.LENGTH_SHORT).show();
                 } else
                     Toast.makeText(getApplicationContext(), "DID NOT insert to db :-(", Toast.LENGTH_SHORT).show();
             }
@@ -69,8 +72,9 @@ int s;
                     String dName = getData.getString(getData.getColumnIndex("name"));
                     String dPhone = getData.getString(getData.getColumnIndex("phone"));
                     String dEmail = getData.getString(getData.getColumnIndex("email"));
+                    String dAge = getData.getString(getData.getColumnIndex("Age"));
                     Toast.makeText(getApplicationContext(),
-                            "rec: " + dName + ", " + dPhone + ", " + dEmail, Toast.LENGTH_LONG).show();
+                            "rec: " + dName + ", " + dPhone + ", " + dEmail  +", " + dAge, Toast.LENGTH_LONG).show();
                 }
                 else
                     Toast.makeText(getApplicationContext(),

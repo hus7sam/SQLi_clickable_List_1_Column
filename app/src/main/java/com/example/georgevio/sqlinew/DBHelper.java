@@ -18,7 +18,7 @@ public class DBHelper extends SQLiteOpenHelper {
     public static final String CONTACTS_COLUMN_NAME = "name";
     public static final String CONTACTS_COLUMN_EMAIL = "email";
     public static final String CONTACTS_COLUMN_STREET = "street";
-    public static final String CONTACTS_COLUMN_CITY = "place";
+    public static final String CONTACTS_COLUMN_CITY = "Age";
     public static final String CONTACTS_COLUMN_PHONE = "phone";
     private HashMap hp;
 
@@ -31,7 +31,7 @@ public class DBHelper extends SQLiteOpenHelper {
         // TODO Auto-generated method stub
         db.execSQL(
                 "create table contacts " +
-                        "(id integer primary key, name text,phone text,email text)"//, street text,place text)"
+                        "(id integer primary key, name text,phone text,email text,Age text)"//, street text,place text)"
         );
     }
 
@@ -42,12 +42,13 @@ public class DBHelper extends SQLiteOpenHelper {
         onCreate(db);
     }
 
-    public boolean insertContact  (String name, String phone, String email){//, String street,String place)
+    public boolean insertContact  (String name, String phone, String email,String Age){//, String street,String place)
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put("name", name);
         contentValues.put("phone", phone);
         contentValues.put("email", email);
+        contentValues.put("Age", Age);
         //contentValues.put("street", street);
         //contentValues.put("place", place);
         db.insert("contacts", null, contentValues);
@@ -66,7 +67,7 @@ public class DBHelper extends SQLiteOpenHelper {
         return numRows;
     }
 
-    public boolean updateContact (Integer id, String name, String phone, String email, String street,String place)
+    public boolean updateContact (Integer id, String name, String phone, String email, String street,String Age)
     {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
@@ -74,7 +75,7 @@ public class DBHelper extends SQLiteOpenHelper {
         contentValues.put("phone", phone);
         contentValues.put("email", email);
         contentValues.put("street", street);
-        contentValues.put("place", place);
+        contentValues.put("Age", Age);
         db.update("contacts", contentValues, "id = ? ", new String[] { Integer.toString(id) } );
         return true;
     }
@@ -109,5 +110,10 @@ public class DBHelper extends SQLiteOpenHelper {
             res.moveToNext();
         }
         return array_list;
+    }
+    public Cursor getListContents() {
+        SQLiteDatabase db = this.getWritableDatabase();
+        Cursor data = db.rawQuery("SELECT * FROM " + CONTACTS_TABLE_NAME, null);
+        return data;
     }
 }

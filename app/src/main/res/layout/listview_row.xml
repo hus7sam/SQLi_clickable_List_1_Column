@@ -3,34 +3,37 @@
     android:id="@+id/relativeLayout1"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    android:background="#2ad9e7">
+    android:background="@android:color/holo_orange_light">
 
     <TextView
-        android:id="@+id/FirstText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="First"></TextView>
+        android:id="@+id/NameText"
+        android:layout_width="116dp"
+        android:layout_height="match_parent"
+        android:layout_weight="33"
+        android:textSize="20sp"
+        android:textStyle="bold"></TextView>
 
     <TextView
-        android:id="@+id/SecondText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="2"
-        android:text="Second"></TextView>
+        android:id="@+id/phoneText"
+        android:layout_width="116dp"
+        android:layout_height="match_parent"
+        android:layout_weight="33"
+        android:textSize="20sp"
+        android:textStyle="bold"></TextView>
 
     <TextView
-        android:id="@+id/ThirdText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Third"></TextView>
-
+        android:id="@+id/emileText"
+        android:layout_width="116dp"
+        android:layout_height="match_parent"
+        android:layout_weight="33"
+        android:textSize="20sp"
+        android:textStyle="bold"></TextView>
     <TextView
-        android:id="@+id/FourthText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="Fourth"></TextView>
+        android:id="@+id/AgeText"
+        android:layout_width="116dp"
+        android:layout_height="match_parent"
+        android:layout_weight="33"
+        android:textSize="20sp"
+        android:textStyle="bold"></TextView>
 
 </LinearLayout>
